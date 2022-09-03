@@ -13,19 +13,24 @@ def extract_lyrics(url):
     soup = BeautifulSoup(r.content, 'html.parser')
     #print(r.content)
     lyrics = soup.find("div", class_="SongPageGriddesktop-sc-1px5b71-0 Lyrics__Root-sc-1ynbvzw-1 giibkh")
-    print(lyrics)
+    #print(type(lyrics))
+    #print(lyrics)
+
     all_words = []
     for sentence in lyrics.stripped_strings:
         sentence_word = [word.strip(",").strip(".").lower() for word in sentence.split() if len(word) > 2]
         all_words.extend(sentence_word)
-
-   # counter = collections.Counter(all_words)
-    #print(counter.most_common(10))
-
-
     pprint(all_words)
 
-#Lyrics__Container-sc-1ynbvzw-6 YYrds
+    counter = collections.Counter(all_words)
+    print(counter.most_common(10))
+
+
+#Ce sont les classes des div que j'ai essayé
+    #Lyrics__Container-sc-1ynbvzw-6 YYrds
+    #InreadContainer__Container-sc-19040w5-0 cujBpY PrimisPlayer__InreadContainer-sc-1tvdtf7-0 juOVWZ
+    #InreadContainer__Container-sc-19040w5-0 cujBpY PrimisPlayer__InreadContainer-sc-1tvdtf7-0 juOVWZ
+    #PrimisPlayer__Container-sc-1tvdtf7-1 csMTdh
 def get_all_urls():
     page_number = 1
     links = []
